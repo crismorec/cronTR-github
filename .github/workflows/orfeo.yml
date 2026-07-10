@@ -2,7 +2,7 @@ name: TeResuelvo Orfeo
 
 on:
   schedule:
-    - cron: "*/5 * * * *"
+    - cron: "*/3 * * * *"
 
   workflow_dispatch:
 
