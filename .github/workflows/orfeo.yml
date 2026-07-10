@@ -27,3 +27,6 @@ jobs:
 
       - name: Execute Orfeo
         run: node run.js
+
+      - name: Timestamp
+        run: date
