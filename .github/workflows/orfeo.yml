@@ -1,4 +1,4 @@
-name: TeResuelvo Orfeo v3
+name: TeResuelvo Orfeo v4
 
 on:
   workflow_dispatch:
@@ -11,16 +11,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - run: npm install
+      - name: Install dependencies
+        run: npm install
 
-      - run: npx playwright install chromium
+      - name: Install Chromium
+        run: npx playwright install chromium
 
-      - run: node run.js
+      - name: Execute Orfeo
+        run: node run.js
 
-      - run: date
+      - name: Timestamp
+        run: date
