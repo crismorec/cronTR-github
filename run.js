@@ -1,39 +1,25 @@
 const { chromium } = require("playwright");
 
-const URL =
-  "https://teresuelvo.superservicios.gov.co/crons/orfeo";
-
 (async () => {
 
-  const browser = await chromium.launch({
-    headless: true
-  });
+  const browser = await chromium.launch({ headless: true });
 
   const page = await browser.newPage();
 
-  try {
-
-    const response = await page.goto(URL, {
+  const response = await page.goto(
+    "https://teresuelvo.superservicios.gov.co/crons/orfeo",
+    {
       waitUntil: "networkidle",
       timeout: 60000
-    });
+    }
+  );
 
-    console.log("STATUS:", response?.status());
+  const body = await page.textContent("body");
 
-    const html = await page.content();
+  console.log(new Date().toISOString());
+  console.log("STATUS:", response.status());
+  console.log("BODY:", body);
 
-    console.log(
-      html.substring(0, 1000)
-    );
-
-  } catch (e) {
-
-    console.error(e);
-
-  } finally {
-
-    await browser.close();
-
-  }
+  await browser.close();
 
 })();
